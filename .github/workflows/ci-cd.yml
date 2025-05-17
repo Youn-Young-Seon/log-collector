@@ -24,6 +24,7 @@ jobs:
       - name: 🧪 Install dependencies
         run: npm run build
 
-      - name: 🧪 Install dependencies
+      - name: 🚀 Restart or Start App
         run: |
-          pm2 restart log-collector || pm2 start dist/main.js --name log-collector
+          pm2 delete log-collector || true
+          pm2 start dist/main.js --name log-collector
