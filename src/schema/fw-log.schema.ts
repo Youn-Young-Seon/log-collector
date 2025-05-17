@@ -8,37 +8,14 @@ import { FwBaseInfo } from './fw-base-info.schema';
 })
 export class FwLog extends Document {
   @Prop({
-    type: Object
+    type: FwConnInfo
   })
-  fwConnInfo: {
-    natRuleId: number;
-    natRuleName: string;
-    srcIp: string;
-    srcPort: number;
-    dstIp: string;
-    dstPort: number;
-    protocol: number;
-  };
+  fwConnInfo: FwConnInfo;
 
   @Prop({
-    type: Object
+    type: FwBaseInfo
   })
-  fwBaseInfoSchema: {
-    tag: string;
-    startTime: Date;
-    endTime: Date;
-    machineName: string;
-    fwRuleId: number;
-    fwRuleName: string;
-    appProtocol: string;
-    bytesForward: number;
-    bytesBackward: number;
-    bytesTotal: number;
-    terminateReason: string;
-    host: string;
-    srcCountry: string;
-    dstCountry: string;
-  };
+  fwBaseInfoSchema: FwBaseInfo;
 }
 
 export const LogSchema = SchemaFactory.createForClass(FwLog);

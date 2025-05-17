@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FwLog, LogSchema } from './schema/fw-log.schema';
+import { FwConnInfo } from './schema/fw-conn-info.schema';
+import { FwBaseInfo } from './schema/fw-base-info.schema';
 
 @Module({
   imports: [
@@ -11,6 +13,14 @@ import { FwLog, LogSchema } from './schema/fw-log.schema';
       {
         name: FwLog.name,
         schema: LogSchema, 
+      },
+      {
+        name: FwConnInfo.name,
+        schema: LogSchema,
+      },
+      {
+        name: FwBaseInfo.name,
+        schema: LogSchema,
       },
     ]),
   ],
