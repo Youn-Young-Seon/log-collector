@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 
-@Schema()
-export class FwBaseInfoSchema extends Document {
+@Schema({ _id: false })
+export class FwBaseInfo extends Document {
   @Prop()
   tag: string;
 
@@ -45,5 +45,3 @@ export class FwBaseInfoSchema extends Document {
   @Prop()
   dstCountry: string;
 }
-
-export const BaseInfoSchema = SchemaFactory.createForClass(FwBaseInfoSchema);

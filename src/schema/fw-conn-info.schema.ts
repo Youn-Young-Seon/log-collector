@@ -1,15 +1,15 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 
-@Schema()
-export class FwConnInfoSchema extends Document {
+@Schema({ _id: false })
+export class FwConnInfo extends Document {
   @Prop({
     name: "nat_rule_id"
   })
   natRuleId: number;
 
   @Prop({
-    name: "nat_rule_id"
+    name: "nat_rule_name"
   })
   natRuleName: string;
 
@@ -18,7 +18,9 @@ export class FwConnInfoSchema extends Document {
   })
   srcIp: string;
 
-  @Prop()
+  @Prop({
+    name: "src_port"
+  })
   srcPort: number;
 
   @Prop()
@@ -30,5 +32,3 @@ export class FwConnInfoSchema extends Document {
   @Prop()
   protocol: number;
 }
-
-export const ConnInfoSchema = SchemaFactory.createForClass(FwConnInfoSchema);

@@ -1,23 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, SchemaTypes } from 'mongoose';
-import { FwConnInfoSchema } from './fw-conn-info.schema';
-import { FwBaseInfoSchema } from './fw-base-info.schema';
+import { Document } from 'mongoose';
+import { FwConnInfo } from './fw-conn-info.schema';
+import { FwBaseInfo } from './fw-base-info.schema';
 
 @Schema({
   timestamps: true,
 })
-export class FwLogSchema extends Document {
+export class FwLog extends Document {
   @Prop({
-    type: SchemaTypes.ObjectId,
-    ref: 'FwConnInfoSchema',
+    type: FwConnInfo
   })
-  fwConnInfo: FwConnInfoSchema;
+  fwConnInfo: FwConnInfo;
 
   @Prop({
-    type: SchemaTypes.ObjectId,
-    ref: 'FwConnInfoSchema',
+    type: FwBaseInfo
   })
-  fwBaseInfoSchema: FwBaseInfoSchema;
+  fwBaseInfoSchema: FwBaseInfo;
 }
 
-export const LogSchema = SchemaFactory.createForClass(FwLogSchema);
+export const LogSchema = SchemaFactory.createForClass(FwLog);
