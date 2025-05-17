@@ -35,8 +35,8 @@ export class AppService implements OnModuleInit {
       });
     });
 
-    server.listen(3002, () => {
-      console.log('Syslog TCP server listening on port 3002');
+    server.listen(5114, () => {
+      console.log('Syslog TCP server listening on port 5114');
     });
   }
 
