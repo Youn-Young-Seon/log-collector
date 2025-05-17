@@ -10,7 +10,7 @@ import { FwLog, LogSchema } from './schema/fw-log.schema';
     MongooseModule.forFeature([
       {
         name: FwLog.name,
-        schema: LogSchema,
+        schema: LogSchema, 
       },
     ]),
   ],
