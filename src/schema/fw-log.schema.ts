@@ -8,7 +8,7 @@ import { FwBaseInfo } from './fw-base-info.schema';
 })
 export class FwLog extends Document {
   @Prop({
-    type: FwConnInfo
+    type: Object
   })
   fwConnInfo: {
     natRuleId: number;
@@ -21,7 +21,7 @@ export class FwLog extends Document {
   };
 
   @Prop({
-    type: FwBaseInfo
+    type: Object
   })
   fwBaseInfoSchema: {
     tag: string;
