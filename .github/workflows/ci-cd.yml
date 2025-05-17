@@ -1,4 +1,4 @@
-name: CI/CD to VM (NestJS)
+name: Build and Deploy on Self-Hosted Runner
 
 on:
   push:
@@ -18,19 +18,12 @@ jobs:
         with:
           node-version: 22
 
-      - name: 🧪 Run Tests
-        run: |
-          npm install
+      - name: 🧪 Install dependencies
+        run: npm install
 
-      - name: 🚀 Deploy to VM via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_KEY }}
-          script: |
-            cd ${{ secrets.APP_DIR }}
-            git pull origin main
-            npm install
-            npm run build
-            pm2 restart log-collector || pm2 start dist/main.js --name log-collector 
+      - name: 🧪 Install dependencies
+        run: npm run build
+
+      - name: 🧪 Install dependencies
+        run: |
+          pm2 restart log-collector || pm2 start dist/main.js --name log-collector
