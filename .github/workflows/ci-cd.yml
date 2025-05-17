@@ -33,4 +33,4 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            pm2 restart app || pm2 start dist/main.js --name app
+            pm2 restart log-collector  || pm2 start dist/main.js --name log-collector 
