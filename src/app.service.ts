@@ -3,6 +3,10 @@ import * as net from 'net';
 import { InjectModel } from '@nestjs/mongoose';
 import { FwLog } from './schema/fw-log.schema';
 import { Model } from 'mongoose';
+import { FwConnInfoDto } from './dto/fw-conn-info.dto';
+import { FwBaseInfoDto } from './dto/fw-base-info.dto';
+import { FwLogDto } from './dto/fw-log.dto';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -21,7 +25,17 @@ export class AppService implements OnModuleInit {
           delete parsedData._id;
         }
 
-        this.logModel.insertOne(parsedData);
+        // const fwConnInfoData: Record<string, FwConnInfoDto> = parsedData;
+        // const fwBaseInfoData: Record<string, FwBaseInfoDto> = parsedData;
+
+        // const fwLogInfoData: FwLogDto = {
+        //   fwConnInfo: fwConnInfoData,
+        //   fwBaseInfo: fwBaseInfoData,
+        // };
+
+        const fwLogInfoData = plainToInstance(FwLogDto, parsedData);
+
+        this.logModel.insertOne(fwLogInfoData);
 
         console.log(parsedData);
       });

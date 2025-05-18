@@ -15,7 +15,7 @@ export class FwLog extends Document {
   @Prop({
     type: FwBaseInfo
   })
-  fwBaseInfoSchema: FwBaseInfo;
+  fwBaseInfo: FwBaseInfo;
 }
 
 export const LogSchema = SchemaFactory.createForClass(FwLog);
