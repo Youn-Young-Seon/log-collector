@@ -35,9 +35,9 @@ export class AppService implements OnModuleInit {
 
         const fwLogInfoData = plainToInstance(FwLogDto, parsedData);
 
-        this.logModel.insertOne(fwLogInfoData);
+        this.logModel.create(fwLogInfoData)
 
-        console.log(parsedData);
+        console.log(fwLogInfoData);
       });
     });
 
