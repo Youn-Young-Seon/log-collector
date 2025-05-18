@@ -25,15 +25,15 @@ export class AppService implements OnModuleInit {
           delete parsedData._id;
         }
 
-        // const fwConnInfoData: Record<string, FwConnInfoDto> = parsedData;
-        // const fwBaseInfoData: Record<string, FwBaseInfoDto> = parsedData;
+        const fwConnInfo: Record<string, FwConnInfoDto> = parsedData;
+        const fwBaseInfo: Record<string, FwBaseInfoDto> = parsedData;
 
         // const fwLogInfoData: FwLogDto = {
         //   fwConnInfo: fwConnInfoData,
         //   fwBaseInfo: fwBaseInfoData,
         // };
 
-        const fwLogInfoData = plainToInstance(FwLogDto, parsedData);
+        const fwLogInfoData = plainToInstance(FwLogDto, {...fwConnInfo, ...fwBaseInfo});
 
         this.logModel.create(fwLogInfoData)
 
