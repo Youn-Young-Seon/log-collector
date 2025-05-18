@@ -25,15 +25,37 @@ export class AppService implements OnModuleInit {
           delete parsedData._id;
         }
 
-        const fwConnInfo: Record<string, FwConnInfoDto> = parsedData;
-        const fwBaseInfo: Record<string, FwBaseInfoDto> = parsedData;
+        const fwConnInfo = plainToInstance(FwConnInfoDto, {
+          natRuleId: parsedData.natRuleId,
+          natRuleName: parsedData.natRuleName,
+          srcIp: parsedData.srcIp,
+          srcPort: parsedData.srcPort,
+          dstIp: parsedData.dstIp,
+          dstPort: parsedData.dstPort,
+          protocol: parsedData.protocol,
+        });
 
-        // const fwLogInfoData: FwLogDto = {
-        //   fwConnInfo: fwConnInfoData,
-        //   fwBaseInfo: fwBaseInfoData,
-        // };
+        const fwBaseInfo = plainToInstance(FwBaseInfoDto, {
+          tag: parsedData.tag,
+          startTime: new Date(parsedData.startTime),
+          endTime: new Date(parsedData.endTime),
+          machineName: parsedData.machineName,
+          fwRuleId: parsedData.fwRuleId,
+          fwRuleName: parsedData.fwRuleName,
+          appProtocol: parsedData.appProtocol,
+          bytesForward: parsedData.bytesForward,
+          bytesBackward: parsedData.bytesBackward,
+          bytesTotal: parsedData.bytesTotal,
+          terminateReason: parsedData.terminateReason,
+          host: parsedData.host,
+          srcCountry: parsedData.srcCountry,
+          dstCountry: parsedData.dstCountry,
+        });
 
-        const fwLogInfoData = plainToInstance(FwLogDto, {...fwConnInfo, ...fwBaseInfo});
+        const fwLogInfoData = {
+          fwConnInfo,
+          fwBaseInfo,
+        };
 
         this.logModel.create(fwLogInfoData)
 
